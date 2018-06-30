@@ -58,13 +58,28 @@ class BooksList extends Component{
 	  }
 	  
   	deleteBook(book){
+		this.props.notes.map((note)=>{
+			if(note.book_id === book.id){
+				$.ajax({
+					type: 'post',
+					url: '/userinfo/delnote',
+					data: JSON.stringify({id: this.state.id, note: note}),
+					dataType: "json",
+					contentType: "application/json",
+				});
+				this.props.actions.deleteNote(note.id);
+			}
+		})
+		
     	$.ajax({
            type: 'post',
            url: '/userinfo/delbook',
            data: JSON.stringify({id: this.state.id, book: book}),
            dataType: "json",
            contentType: "application/json",
-        });
+		});
+		this.props.actions.deleteBook(book.id)
+		
   	}
 
   	handleChange = e => {
@@ -84,7 +99,7 @@ class BooksList extends Component{
     										trigger={<Cancel/>}
     										header='Delete!'
     										content='Do you really want to delete this book?'
-    										actions={['May be later', { key: 'Yesss', content: 'Yesss', positive: true,onClick:() =>{this.props.actions.deleteBook(book.id), this.props.actions.deleteAll(book), this.deleteBook(book)}  }]}/>        									
+    										actions={['May be later', { key: 'Yesss', content: 'Yesss', positive: true,onClick:() =>{ this.deleteBook(book)}  }]}/>        									
           						</Item>
         				</Div>
          			</div>);

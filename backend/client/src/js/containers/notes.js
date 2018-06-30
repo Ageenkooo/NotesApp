@@ -75,6 +75,7 @@ class Notes extends Component{
            dataType: "json",
            contentType: "application/json",
            });
+    this.props.actions.deleteNote(note.id);
   }
 
   showNotes(){
@@ -89,7 +90,7 @@ class Notes extends Component{
     										trigger={<Cancel/>}
     										header='Delete!'
     										content='Do you really want to delete this note?'
-    										actions={['May be later', { key: 'Yesss', content: 'Yesss', positive: true,onClick:() =>{ this.deleteNote(note); this.props.actions.deleteNote(note.id);}  }]}/>        									
+    										actions={['May be later', { key: 'Yesss', content: 'Yesss', positive: true,onClick:() =>{ this.deleteNote(note);}  }]}/>        									
 						
                     </Item>
                   </Div>

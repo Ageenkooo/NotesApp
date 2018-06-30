@@ -101,22 +101,18 @@ exports.changeUserNote = (userData) => {
 }
 exports.delUserBook = (userData) => {
 	console.log(userData)
-	return User.update({},{$pull:{books: null}})
-    // return User.update({
-    //     _id: userData.id,
-    //     "books": {
-    //         $elemMatch: {
-    //             "id": userData.book.id
-    //         }
-    //     }
-    // }, {
-    //     $unset: {
-    //         "books.$": ""
-    //     }
-    // }, function (err, user) {
-    //     if (err) 
-    //         throw err
-    // })
+    return User.update({
+        _id: userData.id
+    }, {
+        $pull: {
+            'books': {
+                id: userData.book.id
+            }
+        }
+    }, function (err) {
+        if (err) 
+            throw err
+    })
 }
 exports.delUserNote = (userData) => {
     console.log(userData)

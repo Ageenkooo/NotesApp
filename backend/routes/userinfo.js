@@ -53,19 +53,19 @@ router.post('/addLable',(req,res,next)=>{
     })
 })
 
-router.post('/delbook',(req,res,next)=>{
+router.post('/delbook',(req)=>{
     console.log(req.body)
     api.delUserBook(req.body)
-    .then((res)=>{console.log("yes")})
-    .catch((err)=>{
-        console.log(err)
+    .then(()=>{console.log("book was deleted")})
+    .catch(()=>{
+        console.log("err")
     })
 })
 
 router.post('/delnote',(req)=>{
     console.log(req.body)
     api.delUserNote(req.body)
-    .then(()=>{console.log("yes")})
+    .then(()=>{console.log("note was deleted")})
     .catch(()=>{
         console.log("err")
     })
