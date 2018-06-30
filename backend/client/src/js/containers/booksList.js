@@ -92,13 +92,13 @@ class BooksList extends Component{
 
   render(){
     return (
-          <div>
+		<Div  className="flex-column">
             {this.showList()}
             <AddButton 
             placeholder="new book" value={this.state.text}
               onChange={this.handleChange}
               onKeyDown={this.handleSubmit}>Add book</AddButton>
-              </div>
+             </Div>
             )
           }
 }

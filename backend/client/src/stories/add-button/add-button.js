@@ -13,7 +13,7 @@ const ButtonS= styled.button`
 	user-select: none;
 	font-size: 1.2em;
     margin-top: 0.3em;
-    width: 200px;
+    width: 190px;
 	cursor : pointer;
 	:hover, :active {
         background: #6C567B !important;

@@ -80,7 +80,7 @@ class Notes extends Component{
   showNotes(){
     return this.props.notes.map ((note) => {
       if(note.book_id===this.props.book.id && !this.props.book.deleted)
-        return (
+        return (<div key={note.id}>
                   <Div key={note.id} className="flex flex-center">
                     <Item className={note.id === this.props.note.id ? 'chosen ' + 'notepad color' : 'notepad color' }
                           onClick={()=>{this.props.actions.selectNote(note)}} key={note.id} name ={note.name}>
@@ -93,6 +93,7 @@ class Notes extends Component{
 						
                     </Item>
                   </Div>
+                </div>
                 );
         });
     }
@@ -104,12 +105,12 @@ class Notes extends Component{
         <div><Lable>Choose a book</Lable></div>)
     }
     return (
-      <div>
+      <Div  className="flex-column">
           {this.showNotes()}
           <AddButton placeholder="new note" value={this.state.text}
             onChange={this.handleChange}
             onKeyDown={this.handleSubmit}>Add note</AddButton>
-      </div>
+      </Div>
     );
   }
 }

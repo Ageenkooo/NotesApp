@@ -42,7 +42,12 @@ width: 4px;
 		background-color: rgba(255, 255, 255, 0.95) !important;
 		/* opacity: 0.95; */
 	}
-	
+	&.flex-column{
+		display : flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: center;
+	}
 	&.left{
 		width : 20%;
 		overflow: scroll;
