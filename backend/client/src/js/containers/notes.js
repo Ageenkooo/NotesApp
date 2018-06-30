@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import Item from '../../stories/item/item'
-import Input from '../../stories/input/input';
 import { Button, Header, Icon, Modal } from 'semantic-ui-react';
 import * as BookActions from '../actions';
+import AddButton from '../../stories/add-button/add-button';
 import Cancel from '../../stories/cancel-button/cancel-button'
 import Lable from '../../stories/lable/lable';
 import {bindActionCreators} from 'redux';
@@ -106,9 +106,9 @@ class Notes extends Component{
     return (
       <div>
           {this.showNotes()}
-          <Input placeholder="new note" value={this.state.text}
+          <AddButton placeholder="new note" value={this.state.text}
             onChange={this.handleChange}
-            onKeyDown={this.handleSubmit}></Input>
+            onKeyDown={this.handleSubmit}>Add note</AddButton>
       </div>
     );
   }

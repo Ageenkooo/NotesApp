@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import cn from 'classnames';
 
@@ -13,7 +12,7 @@ const InputS = styled.input`
 	}
 	&.center
 	{
-		width : 180px;
+		width : 200px;
 		display: block;
     margin-left: auto;
     margin-right: auto ;
@@ -30,7 +29,7 @@ const InputS = styled.input`
   border-radius: 3px !important;
 `;
 
-const Input = ({className, onChange, type, placeholder, value, name,onKeyDown, onBlur})=>(
-	<InputS className={cn( className)} name={name} type={type} onChange = {onChange} onBlur={onBlur} placeholder={placeholder} value={value} onKeyDown={onKeyDown}/>
+const Input = ({className, onChange, type, placeholder, value, name,onKeyDown, onBlur, onMouseLeave})=>(
+	<InputS className={cn( className)} name={name} type={type} onMouseLeave={onMouseLeave} onChange = {onChange} onBlur={onBlur} placeholder={placeholder} value={value} onKeyDown={onKeyDown}/>
 );
 export default Input;

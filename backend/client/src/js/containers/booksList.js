@@ -3,11 +3,10 @@ import {bindActionCreators} from 'redux';
 import { Button, Header, Icon, Modal } from 'semantic-ui-react';
 import {connect} from 'react-redux';
 import Item from '../../stories/item/item';
-import Input from '../../stories/input/input';
+import AddButton from '../../stories/add-button/add-button';
 import Cancel from '../../stories/cancel-button/cancel-button'
 import Div from '../../stories/div/div'
 import * as BookActions from '../actions';
-import PropTypes from 'prop-types'
 import $ from 'jquery';
 window.jQuery = window.$ = $;
 
@@ -95,10 +94,10 @@ class BooksList extends Component{
     return (
           <div>
             {this.showList()}
-            <Input 
+            <AddButton 
             placeholder="new book" value={this.state.text}
               onChange={this.handleChange}
-              onKeyDown={this.handleSubmit}></Input>
+              onKeyDown={this.handleSubmit}>Add book</AddButton>
               </div>
             )
           }
