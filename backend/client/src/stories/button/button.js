@@ -20,7 +20,7 @@ const ButtonS= styled.button`
   		padding: 0;
 		padding-left: 0.2em;
 		border-radius: 50%;
-	}
+	} 
 	:hover {
   		color: white;
   		border:2px solid #6C567B;

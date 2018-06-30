@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import Item from '../../stories/item/item'
-import Input from '../../stories/input/input';
 import { Button, Header, Icon, Modal } from 'semantic-ui-react';
 import * as BookActions from '../actions';
+import AddButton from '../../stories/add-button/add-button';
 import Cancel from '../../stories/cancel-button/cancel-button'
 import Lable from '../../stories/lable/lable';
 import {bindActionCreators} from 'redux';
@@ -81,7 +81,7 @@ class Notes extends Component{
   showNotes(){
     return this.props.notes.map ((note) => {
       if(note.book_id===this.props.book.id && !this.props.book.deleted)
-        return (
+        return (<div key={note.id}>
                   <Div key={note.id} className="flex flex-center">
                     <Item className={note.id === this.props.note.id ? 'chosen ' + 'notepad color' : 'notepad color' }
                           onClick={()=>{this.props.actions.selectNote(note)}} key={note.id} name ={note.name}>
@@ -94,6 +94,7 @@ class Notes extends Component{
 						
                     </Item>
                   </Div>
+                </div>
                 );
         });
     }
@@ -105,12 +106,12 @@ class Notes extends Component{
         <div><Lable>Choose a book</Lable></div>)
     }
     return (
-      <div>
+      <Div  className="flex-column">
           {this.showNotes()}
-          <Input placeholder="new note" value={this.state.text}
+          <AddButton placeholder="new note" value={this.state.text}
             onChange={this.handleChange}
-            onKeyDown={this.handleSubmit}></Input>
-      </div>
+            onKeyDown={this.handleSubmit}>Add note</AddButton>
+      </Div>
     );
   }
 }
