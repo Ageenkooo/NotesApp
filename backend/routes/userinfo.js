@@ -62,11 +62,11 @@ router.post('/delbook',(req,res,next)=>{
     })
 })
 
-router.post('/delnote',(req,res,next)=>{
+router.post('/delnote',(req)=>{
     console.log(req.body)
     api.delUserNote(req.body)
     .then(()=>{console.log("yes")})
-    .catch((err)=>{
+    .catch(()=>{
         console.log("err")
     })
 })

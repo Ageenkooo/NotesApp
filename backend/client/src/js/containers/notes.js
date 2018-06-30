@@ -89,7 +89,7 @@ class Notes extends Component{
     										trigger={<Cancel/>}
     										header='Delete!'
     										content='Do you really want to delete this note?'
-    										actions={['May be later', { key: 'Yesss', content: 'Yesss', positive: true,onClick:() =>{this.props.actions.deleteNote(note.id); this.deleteNote(note)}  }]}/>        									
+    										actions={['May be later', { key: 'Yesss', content: 'Yesss', positive: true,onClick:() =>{ this.deleteNote(note); this.props.actions.deleteNote(note.id);}  }]}/>        									
 						
                     </Item>
                   </Div>

@@ -122,16 +122,13 @@ exports.delUserNote = (userData) => {
     console.log(userData)
     return User.update({
         _id: userData.id,
-        "notes": {
-            $elemMatch: {
-                "id": userData.note.id
+    }, {
+        $pull: {
+            'notes': {
+                id: userData.note.id
             }
         }
-    }, {
-        $unset: {
-            "notes.$": ""
-        }
-    }, function (err, user) {
+    }, function (err) {
         if (err) 
             throw err;
         }
