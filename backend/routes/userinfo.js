@@ -5,8 +5,6 @@ var mongoose = require("mongoose");
 var mongoClient = require("mongodb").MongoClient;
 
 var url = "mongodb://localhost:27017/session";
-const nodemailer = require('nodemailer');
-var smtpTransport = require('nodemailer-smtp-transport')
 
 router.get('/', function(req, res, next) {
     var userData;

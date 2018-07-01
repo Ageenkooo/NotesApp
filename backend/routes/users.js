@@ -23,6 +23,13 @@ router.post('/', (req, res, next)=>{
 			console.log("Error")
 		})
 });
+router.post('/logout', function(req, res, next) {
+	console.log(req)
+	if (req.session.user) {
+		delete req.session.user;
+	}
+
+});
 
 
 module.exports = router;

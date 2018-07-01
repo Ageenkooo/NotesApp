@@ -5,14 +5,20 @@ import Notes from '../containers/notes';
 import Lable from '../../stories/lable/lable';
 import Div from '../../stories/div/div';
 import User from '../../stories/user/user';
+import {withRouter} from "react-router-dom";
 import MarkDown from '../../markdown'
+import $ from 'jquery';
+window.jQuery = window.$ = $;
+
 
 class Page extends Component{
   constructor(props) {
         super(props);
         this.state = {
           name: 'user_name',
+          email: '',
         };
+        this.Logout = this.Logout.bind(this);
       }
 
     componentDidMount() {
@@ -20,14 +26,32 @@ class Page extends Component{
         .then(res => res.json())
         .then((res)=>{
            this.state.name = res.name;
+           this.state.email = res.emai;
            this.setState(this.state)
          })
     }
+    Logout() {
+      $.ajax({
+          type: 'post',
+          url: '/users/logout',
+          data: JSON.stringify({email: this.state.email}),
+          dataType: "json",
+          contentType: "application/json",
+          success: (data) => {
+                  this
+                      .props
+                      .history
+                      .push('/registration');
+              
+          }
+      });
+  }
 render(){
   return(
     <div>
     <Div className="flex flex-right">
       <User>{this.state.name}</User>
+      <button onClick={this.Logout}>logout</button>
     </Div>
     <hr/>
     <Div className="flex center flex-left white height">
@@ -49,4 +73,4 @@ render(){
 
 };
 
-export default Page;
+export default withRouter(Page);
