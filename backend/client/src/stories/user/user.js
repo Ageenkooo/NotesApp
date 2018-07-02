@@ -5,10 +5,13 @@ import cn from 'classnames';
 import user from '../../img/user.svg';
 
 const LableS = styled.p`
-  color : #430F58;
+  	color : #430F58;
 	font-size : 1em;
 	font-family: Geneva, Arial, Helvetica, sans-serif;
 	font-weight : 500;
+	padding-bottom: 0 !important;
+	margin-bottom: 0 !important;
+	
 `; 
 
 const ImgS = styled.img`
@@ -25,7 +28,12 @@ const Div = styled.div`
 	display : flex;
 	flex-direction : row;
 	justify-content : flex-end;
+	align-items: center;
 	padding : 0px 10px;
+	:hover{
+		font-style: italic;
+		cursor: pointer;
+	}
 `;
 
 const User = ({children, className, onClick})=>(

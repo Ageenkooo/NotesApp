@@ -25,13 +25,8 @@ class Notes extends Component{
     this.state = {text: this.props.text || '',
                   notes: [],
 				  id: 0,
-				open: false};
+				};
   }
-  closeConfigShow = (closeOnEscape, closeOnRootNodeClick) => () => {
-	this.setState({ closeOnEscape, closeOnRootNodeClick, open: true })
-}
-
-  close = () => this.setState({ open: false })
   
   componentDidMount() {
     this.fetchingData();
@@ -85,7 +80,7 @@ class Notes extends Component{
                   <Div key={note.id} className="flex flex-center">
                     <Item className={note.id === this.props.note.id ? 'chosen ' + 'notepad color' : 'notepad color' }
                           onClick={()=>{this.props.actions.selectNote(note)}} key={note.id} name ={note.name}>
-                        <Modal
+                        <Modal 
 											style={inlineStyle.modal}
     										trigger={<Cancel/>}
     										header='Delete!'
