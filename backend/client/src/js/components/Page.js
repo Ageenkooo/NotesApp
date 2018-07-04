@@ -37,6 +37,11 @@ class Page extends Component{
            this.state.email = res.email;
            this.setState(this.state)
          })
+         .catch((err)=>{
+           this
+          .props
+          .history
+          .push('/login');})
     }
     Logout() {
       $.ajax({
@@ -46,13 +51,16 @@ class Page extends Component{
           dataType: "json",
           contentType: "application/json",
           success: (data) => {
+            console.log(data)
+            if(data == "logout")
                   this
                       .props
                       .history
-                      .push('/registration');
+                      .push('/login');
               
           }
       });
+      
   }
 render(){
   return(

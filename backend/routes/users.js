@@ -28,6 +28,7 @@ router.post('/logout', function(req, res, next) {
 	if (req.session.user) {
 		delete req.session.user;
 	}
+	res.json('logout')
 
 });
 
