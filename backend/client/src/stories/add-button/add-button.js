@@ -5,6 +5,9 @@ import styled from 'styled-components';
 import cn from 'classnames';
 
 const ButtonS= styled.button`
+    &.small{
+        width: 100px;
+    }
     color: white;
   	border:2px solid #CABBE9;
   	background : #CABBE9 !important;
@@ -32,7 +35,8 @@ class AddButton extends React.Component {
                 </ButtonS>;
         }
         else
-            return <Input onMouseLeave ={()=>{if(this.state.input)this.setState({input:false})}} 
+            return <Input className={cn( this.props.className)}
+                          onMouseLeave ={()=>{if(this.state.input)this.setState({input:false})}} 
                           name={this.props.name} 
                           type={this.props.type}  
                           onChange = {this.props.onChange} 

@@ -22,7 +22,7 @@ exports.createUser = (userData) => {
 exports.getUser = (userData) => {
     return User.findOne({_id: userData.id})
 }
-//fixed+
+//fixed+ 
 exports.updateUserBook = (userData) => {
 	let min = 0;
 	let max = 999999;
@@ -62,26 +62,7 @@ exports.updateUserNote = (userData) => {
     })
 }
 
-exports.updateUserLable = (userData) => {
-    return User.update({
-        _id: userData.id,
-        "notes": {
-            $elemMatch: {
-                "id": userData.note_id
-            }
-        }
-    }, {
-        $addToSet: {
-            "notes.$.lables": {
-                id: userData.num + 1,
-                text: userData.lable
-            }
-        }
-    }, function (err, user) {
-        if (err) 
-            throw err
-    })
-}
+
 
 exports.changeUserNote = (userData) => {
     return User.update({
@@ -130,6 +111,45 @@ exports.delUserNote = (userData) => {
             throw err;
         }
     )
+}
+
+exports.updateUserLable = (userData) => {
+    let min = 0;
+	let max = 999999;
+    let randomNum = Math.floor(Math.random() * (max - min + 1)) + min;
+    console.log(userData)
+    return User.update({
+        _id: userData.id,
+        "notes": {
+            $elemMatch: {
+                "id": userData.note_id
+            }
+        }
+    }, {
+        $addToSet: {
+            "notes.$.lables": {
+                id: randomNum,
+                text: userData.lable
+            }
+        }
+    })
+}
+
+exports.delUserNoteLable = (userData) => {
+    return User.update({
+        _id: userData.id,
+        "notes": {
+            $elemMatch: {
+                "id": userData.note_id
+            }
+        }
+    },{
+        $pull: {
+            "notes.$.lables": {
+                id: userData.lable_id,
+            }
+        }
+    })
 }
 exports.checkUser = (userData) => {
     return User

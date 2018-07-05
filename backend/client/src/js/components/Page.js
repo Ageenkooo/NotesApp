@@ -37,11 +37,11 @@ class Page extends Component{
            this.state.email = res.email;
            this.setState(this.state)
          })
-         .catch((err)=>{
-           this
-          .props
-          .history
-          .push('/login');})
+        //  .catch((err)=>{
+        //    this
+        //   .props
+        //   .history
+        //   .push('/login');})
     }
     Logout() {
       $.ajax({

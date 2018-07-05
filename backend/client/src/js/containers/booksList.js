@@ -7,6 +7,7 @@ import AddButton from '../../stories/add-button/add-button';
 import Cancel from '../../stories/cancel-button/cancel-button'
 import Div from '../../stories/div/div'
 import * as BookActions from '../actions';
+
 import $ from 'jquery';
 window.jQuery = window.$ = $;
 
@@ -41,8 +42,6 @@ class BooksList extends Component{
       	const text = e.target.value.trim()
       	if (e.which === 13) {
         	if (text.length !== 0) {
-          		// let new_book = {book: text}
-				// this.props.actions.addBook(new_book)
           		$.ajax({
                  	type: 'post',
                  	url: '/userinfo/book',

@@ -3,6 +3,10 @@ import styled from 'styled-components';
 import cn from 'classnames';
 
 const InputS = styled.input`
+	&.small{
+		width: 100px;
+		margin-top: 0.3em;
+	}
 	:active, :hover, :focus
 	{
 		outline: 0 !important;

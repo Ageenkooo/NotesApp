@@ -2,7 +2,9 @@ import React from 'react';
 import {connect} from 'react-redux';
 import Input from './stories/input/input'
 import Button from './stories/button/button'
+import NoteLable from './stories/note-lable/note-lable'
 import * as BookActions from './js/actions';
+import AddButton from './stories/add-button/add-button';
 import {bindActionCreators} from 'redux';
 import $ from 'jquery';
 window.jQuery = window.$ = $;
@@ -11,17 +13,20 @@ var MarkdownEditor = require('react-markdown-editor').MarkdownEditor;
 var Markdown = require('markdown').markdown;
 
 class MarkDown extends React.Component{
-
-  	state = {
-    	text: this.props.text || '', 
-    	showingText: true,
-  	}
-
-  	componentDidMount() {
-	  	fetch('/userinfo')
-	  		.then(res => res.json())
-	  		.then(res => {this.state.id = res._id; this.setState(this.state);});
-    }
+	constructor(props){
+		super(props);
+  		this.state = {
+			id: 0,
+    		text: this.props.text || '', 
+			showingText: true,
+			lables: [],
+			note: '',
+	  }
+	  this.handleSubmit = this.handleSubmit.bind(this);
+	  this.handleChange = this.handleChange.bind(this);
+	  this.fetchingData = this.fetchingData.bind(this);
+	  this.showLables = this.showLables.bind(this)
+	}
 
   	handleSubmit(e){
 		const text = e.target.value.trim();
@@ -32,22 +37,27 @@ class MarkDown extends React.Component{
 
       	if (e.which === 13) {
         	if (text.length !== 0) {
-          		this.addLable(text)
           		$.ajax({
                   	type: 'post',
                   	url: '/userinfo/addLable',
-                  	data: JSON.stringify({id: currentId, lable: text, num: currentNum, note_id: currentNoteId}),
+                  	data: JSON.stringify({id: currentId, lable: text, note_id: currentNoteId}),
                   	dataType: "json",
                   	contentType: "application/json",
-                });
+				});
+				this.fetchingData(this.props.note)
         	}
-          	this.setState({ text: '' })
-      	}
+			  this.setState({ text: '' })
+		  }
+		  
 	}
-	  
-  	addLable(text){
-		let newLableId = this.props.note.lables.length + 1;
-    	this.props.note.lables = [...this.props.note.lables, {id: newLableId, text: text}]
+	deleteLable(lable, note){
+		$.ajax({
+			type: 'post',
+			url: '/userinfo/deleteLable',
+			data: JSON.stringify({id: this.state.id, lable_id: lable.id, note_id: note}),
+			dataType: "json",
+			contentType: "application/json",
+	  });
 	}
 	  
   	handleChange(e){
@@ -62,19 +72,29 @@ class MarkDown extends React.Component{
       	$.ajax({
             type: 'post',
             url: '/userinfo/chNote',
-            data: JSON.stringify({id: currentId, text : val, note_id: noteId}),
+            data: JSON.stringify({text : val, note_id: noteId}),
             dataType: "json",
             contentType: "application/json",
         });
 	}
-	
-    showLables(note){
-      	return  (this.props.lables.map( (lable) => {
-        	if(lable.id === note.id)
-        		return <span key={lable.id}>{lable}</span>
-      	}))
+
+	fetchingData(note){
+		fetch('/userinfo')
+			.then(res => res.json())
+			.then (res => {this.state.id = res._id; return res.notes})
+			.then(res => {res.map((noteRes) => 
+							{if(note.id == noteRes.id) {
+								console.log(noteRes)
+								this.state.lables = noteRes.lables; 
+								this.state.note = noteRes.id;
+								this.setState(this);
+							}
+							})})
 	}
-	
+	showLables(){
+		this.fetchingData(this.props.note);
+		return this.state.lables.map((lable)=> {return <NoteLable key={lable.id} onClick={()=>this.deleteLable(lable,this.state.note)}>{lable.text}</NoteLable>})
+	}
     Show(){
 		console.log(this.props.note.id)
         return this.props.notes.map ( (note) => {
@@ -85,12 +105,13 @@ class MarkDown extends React.Component{
 													initialContent={note.text}  
 													iconsSet="font-awesome"/>
               				<div>
-              					Lables: {note.lables.map((lable) => {return <span key={lable.id}>#{lable.text} </span>})}
-              				</div>
-              				<br/>
-              				<Input placeholder="add lable" value={this.state.text}
+								  Lables: {this.showLables()}
+								  <AddButton className={"small"} placeholder="add lable" value={this.state.text}
                     									onChange={this.handleChange}
-                    									onKeyDown={this.handleSubmit}></Input>
+                    									onKeyDown={this.handleSubmit}>Add lable </AddButton>
+              				</div>
+              				<hr/>
+              				
               				<Button onClick={()=>{this.changeNote(document.getElementsByClassName('md-editor-textarea')[0].value); this.setState({showingText: true})}}>Add note</Button>
               			</div>);
             else if (note.id===this.props.note.id )

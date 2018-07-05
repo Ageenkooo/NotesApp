@@ -4,8 +4,8 @@ import styled from 'styled-components';
 import cn from 'classnames';
 
 const ButtonS= styled.button`
-	color: #6C567B ;
-	background: white !important;
+	color: white ;
+	background: #6C567B !important;
 	text-decoration: none;
 	user-select: none;
 	font-size: 1.2em;
@@ -22,13 +22,13 @@ const ButtonS= styled.button`
 		border-radius: 50%;
 	} 
 	:hover {
-  		color: white;
+  		color: #6C567B;
   		border:2px solid #6C567B;
-  		background : #6C567B !important;
+  		background : white !important;
  	}
 	:active {
-  		background: #6C567B ;
-  		color: white;
+  		background: white ;
+  		color: #6C567B;
   		border:1px solid #C06C84;
  	}
 `;
