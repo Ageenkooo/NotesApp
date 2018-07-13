@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import cn from 'classnames';
 import cancel from '../../img/cancel.png';
 
-const ButtonCancel= styled.div`
+const ButtonS= styled.div`
 	width : 9px;
 	height : 9px;
 	background-repeat : no-repeat;
@@ -18,9 +18,9 @@ const ButtonCancel= styled.div`
 
 class Cancel extends React.Component {
     render() {
-    	return <ButtonCancel className={cn( this.props.className)}
+    	return <ButtonS className={cn( this.props.className)}
 						    onClick = {this.props.onClick}>
-            	</ButtonCancel>;
+            	</ButtonS>;
   	}
 }
 

@@ -1,10 +1,10 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import Input from './stories/input/input'
-import Button from './stories/button/button'
-import NoteLable from './stories/note-lable/note-lable'
-import * as BookActions from './js/actions';
-import AddButton from './stories/add-button/add-button';
+import Button from '../button/button'
+import Div from '../div/div'
+import NoteLable from '../noteLable/noteLable'
+import * as BookActions from '../../js/actions';
+import AddButton from '../addButton/addButton';
 import {bindActionCreators} from 'redux';
 import $ from 'jquery';
 window.jQuery = window.$ = $;
@@ -44,11 +44,9 @@ class MarkDown extends React.Component{
                   	dataType: "json",
                   	contentType: "application/json",
 				});
-				this.fetchingData(this.props.note)
         	}
 			  this.setState({ text: '' })
 		  }
-		  
 	}
 	deleteLable(lable, note){
 		$.ajax({
@@ -58,6 +56,7 @@ class MarkDown extends React.Component{
 			dataType: "json",
 			contentType: "application/json",
 	  });
+	  this.fetchingData(this.props.note);
 	}
 	  
   	handleChange(e){
@@ -88,18 +87,19 @@ class MarkDown extends React.Component{
 								this.state.lables = noteRes.lables; 
 								this.state.note = noteRes.id;
 								this.setState(this);
+								return noteRes.lables
 							}
 							})})
 	}
 	showLables(){
-		this.fetchingData(this.props.note);
+		
 		return this.state.lables.map((lable)=> {return <NoteLable key={lable.id} onClick={()=>this.deleteLable(lable,this.state.note)}>{lable.text}</NoteLable>})
 	}
     Show(){
-		console.log(this.props.note.id)
+		this.fetchingData(this.props.note);
         return this.props.notes.map ( (note) => {
         	if(note.id===this.props.note.id && !this.state.showingText)
-              	return (<div key={note.id}>
+              	return (<Div className="markdown" key={note.id}>
 							<MarkdownEditor styles={{styleMarkdownTextArea: {height: "35vh"},
 													styleMarkdownPreviewArea: {height: "35vh", overflow: "scroll", "overflow-x": "hidden", "border-bottom":"solid lightgrey 1px" }}} 
 													initialContent={note.text}  
@@ -113,7 +113,7 @@ class MarkDown extends React.Component{
               				<hr/>
               				
               				<Button onClick={()=>{this.changeNote(document.getElementsByClassName('md-editor-textarea')[0].value); this.setState({showingText: true})}}>Add note</Button>
-              			</div>);
+              			</Div>);
             else if (note.id===this.props.note.id )
             	return (<div key={note.id}>Double click to edit text of chosen note<div key={note.id} dangerouslySetInnerHTML={{ __html:Markdown.toHTML(note.text)}}></div></div>)
         });

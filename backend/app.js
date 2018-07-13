@@ -51,8 +51,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/users', users);
-app.use('/books', books);
-app.use('/notes', notes);
 app.use('/userinfo', userinfo);
 app.use('/registration', registration);
 

@@ -22,7 +22,6 @@ exports.createUser = (userData) => {
 exports.getUser = (userData) => {
     return User.findOne({_id: userData.id})
 }
-//fixed+ 
 exports.updateUserBook = (userData) => {
 	let min = 0;
 	let max = 999999;

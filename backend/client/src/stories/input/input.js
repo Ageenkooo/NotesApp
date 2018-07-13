@@ -3,6 +3,16 @@ import styled from 'styled-components';
 import cn from 'classnames';
 
 const InputS = styled.input`
+	background-color: transparent;
+	width : 150px;
+  color: #6C567B !important;
+  font-size: 2vh;
+  padding: 0.5em 1em;
+  border-bottom: 2px solid #6C567B !important;
+	border-top : 0px;
+	border-right : 0px;
+	border-left : 0px;
+  border-radius: 3px !important;
 	&.small{
 		width: 100px;
 		margin-top: 0.3em;
@@ -21,16 +31,6 @@ const InputS = styled.input`
     margin-left: auto;
     margin-right: auto ;
 	}
-	background-color: transparent;
-	width : 150px;
-  color: #6C567B !important;
-  font-size: 2vh;
-  padding: 0.5em 1em;
-  border-bottom: 2px solid #6C567B !important;
-	border-top : 0px;
-	border-right : 0px;
-	border-left : 0px;
-  border-radius: 3px !important;
 `;
 
 const Input = ({className, onChange, type, placeholder, value, name,onKeyDown, onBlur, onMouseLeave})=>(

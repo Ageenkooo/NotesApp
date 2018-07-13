@@ -1,46 +1,39 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+
 import styled from 'styled-components';
-import cn from 'classnames';
 
 const Div = styled.div`
 	::-webkit-scrollbar-button {
-background-image:url('');
-background-repeat:no-repeat;
-width:5px;
-height:0px
-}
-
-::-webkit-scrollbar-track {
-background-color:#ecedee
-}
-
-::-webkit-scrollbar-thumb {
--webkit-border-radius: 0px;
-border-radius: 0px;
-background-color:#6dc0c8;
-}
-
-::-webkit-scrollbar-thumb:hover{
-background-color:#56999f;
-}
-
-::-webkit-resizer{
-background-image:url('');
-background-repeat:no-repeat;
-width:4px;
-height:0px
-}
-
-::-webkit-scrollbar{
-width: 4px;
-}
-	&.height{
-		height: 70vh;
+		background-image:url('');
+		background-repeat:no-repeat;
+		width:5px;
+		height:0px
 	}
-	&.white{
+
+	::-webkit-scrollbar-track {
+		background-color:#ecedee
+	}
+	::-webkit-scrollbar-thumb {
+		-webkit-border-radius: 0px;
+		border-radius: 0px;
+		background-color:#6dc0c8;
+	}
+	::-webkit-scrollbar-thumb:hover{
+		background-color:#56999f;
+	}
+
+	::-webkit-resizer{
+		background-image:url('');
+		background-repeat:no-repeat;
+		width:4px;
+		height:0px
+	}	
+
+	::-webkit-scrollbar{
+		width: 4px;
+	}
+	&.main{
+		height: 70vh;
 		background-color: rgba(255, 255, 255, 0.95) !important;
-		/* opacity: 0.95; */
 	}
 	&.flex-column{
 		display : flex;
@@ -78,7 +71,10 @@ width: 4px;
 	&.flex-right{
 		justify-content: flex-end;
 	}
+	&.markdown{
+		width: 95%;
+		float: right;
+	}
 `;
-
 
 export default Div;

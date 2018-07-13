@@ -1,24 +1,15 @@
 import React, {Component} from 'react';
 import {bindActionCreators} from 'redux';
-import { Button, Header, Icon, Modal } from 'semantic-ui-react';
 import {connect} from 'react-redux';
 import Item from '../../stories/item/item';
-import AddButton from '../../stories/add-button/add-button';
-import Cancel from '../../stories/cancel-button/cancel-button'
+import AddButton from '../../stories/addButton/addButton';
+import ModalWindow from '../../stories/modalWindow/modalWindow';
+import Cancel from '../../stories/cancelButton/cancelButton'
 import Div from '../../stories/div/div'
 import * as BookActions from '../actions';
 
 import $ from 'jquery';
 window.jQuery = window.$ = $;
-
-const inlineStyle = {
-  	modal : {
-    	marginTop: '0px !important',
-    	marginLeft: 'auto',
-    	marginRight: 'auto',
-	  }
-};
-
 class BooksList extends Component{
 	constructor(props){
 		super(props);
@@ -27,19 +18,22 @@ class BooksList extends Component{
 			books : [],
 			id : 0,
 		}
+		this.handleChange = this.handleChange.bind(this);
+		this.handleSubmit = this.handleSubmit.bind(this);
   	}
 	
   	componentDidMount() {
     	this.fetchingData();
-  	}
+	}
+	  
 	fetchingData(){
 		fetch('/userinfo')
     		.then(res => res.json())
       		.then(res => {this.state.books = res.books; this.state.id = res._id; this.setState(this.state); return res.books;})
-      		.then(books => {books.forEach(book => {if(book != null) this.props.actions.AddBookS(book)})});
+      		.then(books => {books.forEach(book => {if(book != null) this.props.actions.addBook(book)})});
 	}
-  	handleSubmit = e => {
-      	const text = e.target.value.trim()
+  	handleSubmit(e){
+      	const text = e.target.value.trim();
       	if (e.which === 13) {
         	if (text.length !== 0) {
           		$.ajax({
@@ -51,7 +45,7 @@ class BooksList extends Component{
 				});
 				this.fetchingData();
         	}
-          	this.setState({ text: '' })
+          	this.setState({ text: '' });
       	}
 	  }
 	  
@@ -68,7 +62,6 @@ class BooksList extends Component{
 				this.props.actions.deleteNote(note.id);
 			}
 		})
-		
     	$.ajax({
            type: 'post',
            url: '/userinfo/delbook',
@@ -76,11 +69,10 @@ class BooksList extends Component{
            dataType: "json",
            contentType: "application/json",
 		});
-		this.props.actions.deleteBook(book.id)
-		
+		this.props.actions.deleteBook(book.id);
   	}
 
-  	handleChange = e => {
+  	handleChange(e){
       	this.setState({ text: e.target.value })
   	}
   
@@ -92,8 +84,8 @@ class BooksList extends Component{
 									  className={book.id === this.props.book.id ? 'chosen '  : ' ' } 
 									  onClick={()=>this.props.actions.select(book)}  
 									  name={book.book}>
-									<Modal
-											style={inlineStyle.modal}
+
+									<ModalWindow
     										trigger={<Cancel/>}
     										header='Delete!'
     										content='Do you really want to delete this book?'
@@ -120,7 +112,7 @@ class BooksList extends Component{
 function mapStateToProps(state){
     return {
         books: state.books,
-        book: state.active,
+        book: state.actBook,
         notes: state.notes
     };
 }

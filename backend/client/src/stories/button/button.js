@@ -14,13 +14,6 @@ const ButtonS= styled.button`
 	border: 2px solid #6C567B;
 	border-radius: 3px;
 	cursor : pointer;
-	&.small {
-		border: 1px solid #6C567B ;
-  		font-size: 0.8em;
-  		padding: 0;
-		padding-left: 0.2em;
-		border-radius: 50%;
-	} 
 	:hover {
   		color: #6C567B;
   		border:2px solid #6C567B;

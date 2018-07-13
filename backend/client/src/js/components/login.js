@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import Lable from './stories/lable/lable';
-import Form from './stories/form/form';
-import Input from './stories/input/input';
-import Button from './stories/button/button';
+import Lable from '../../stories/lable/lable';
+import Form from '../../stories/form/form';
+import Input from '../../stories/input/input';
+import Button from '../../stories/button/button';
 import $ from 'jquery';
 
 
@@ -38,7 +38,7 @@ class LogIn extends Component {
                 contentType: "application/json",
                 success: (data)=>{
                     if(data == 'Access'){
-                      this.context.router.history.push('/app');
+                      this.context.router.history.push('/');
                     }
                 }
               });

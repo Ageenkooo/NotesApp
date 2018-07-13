@@ -1,24 +1,18 @@
 
 import React, {Component} from 'react';
 import BooksList from '../containers/booksList';
-import Notes from '../containers/notes';
+import Notes from '../containers/notesList';
 import Lable from '../../stories/lable/lable';
 import ButtonS from '../../stories/button/button';
 import Div from '../../stories/div/div';
 import User from '../../stories/user/user';
-import { Button, Popup , Modal} from 'semantic-ui-react'
+import ModalWindow from '../../stories/modalWindow/modalWindow';
+import {Popup} from 'semantic-ui-react'
 import {withRouter} from "react-router-dom";
-import MarkDown from '../../markdown'
+import MarkDown from '../../stories/markdown/markdown'
 import $ from 'jquery';
 window.jQuery = window.$ = $;
 
-const inlineStyle = {
-	modal : {
-	  marginTop: '0px !important',
-	  marginLeft: 'auto',
-	  marginRight: 'auto',
-	}
-};
 class Page extends Component{
   constructor(props) {
         super(props);
@@ -37,11 +31,6 @@ class Page extends Component{
            this.state.email = res.email;
            this.setState(this.state)
          })
-        //  .catch((err)=>{
-        //    this
-        //   .props
-        //   .history
-        //   .push('/login');})
     }
     Logout() {
       $.ajax({
@@ -71,8 +60,7 @@ render(){
             content={<div>
               <p> Name: {this.state.name}</p>
                <p>E-mail: {this.state.email} </p>
-               <Modal 
-											style={inlineStyle.modal}
+               <ModalWindow
     										trigger={<ButtonS >logout</ButtonS>}
     										header='Logout?'
     										content='Do you really want to exit?'
@@ -85,7 +73,7 @@ render(){
       />
     </Div>
     <hr/>
-    <Div className="flex center flex-left white height">
+    <Div className="flex center flex-start main">
       <Div className="left">
         <Lable>Your books</Lable>
         <BooksList/>

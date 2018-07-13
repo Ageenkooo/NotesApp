@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import Lable from './stories/lable/lable';
-import Form from './stories/form/form';
-import Input from './stories/input/input';
-import Button from './stories/button/button';
+import Lable from '../../stories/lable/lable';
+import Form from '../../stories/form/form';
+import Button from '../../stories/button/button';
 import { Link } from 'react-router-dom'
 import 'semantic-ui-css/semantic.min.css';
 class Main extends Component {

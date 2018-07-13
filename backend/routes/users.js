@@ -5,7 +5,7 @@ var api = require('../api.js')
 router.post('/', (req, res, next)=>{
 		if (req.session.user){
 			console.log("User has already logged")
-			return res.redirect('/app')
+			return res.redirect('/')
 		}
 	api.checkUser({email:req.body.email, password:req.body.password})
 		.then((user)=>{

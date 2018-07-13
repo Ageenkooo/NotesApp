@@ -5,15 +5,11 @@ import styled from 'styled-components';
 import cn from 'classnames';
 
 const ButtonS= styled.button`
-    &.small{
-        width: 100px;
-    }
     color: white;
   	border:2px solid #CABBE9;
   	background : #CABBE9 !important;
     border-radius: 5px;
 	text-decoration: none;
-	user-select: none;
 	font-size: 1.2em;
     margin-top: 0.3em;
     width: 190px;
@@ -22,6 +18,9 @@ const ButtonS= styled.button`
         background: #6C567B !important;
         border: 2px solid #6C567B;
  	}
+     &.small{
+        width: 100px;
+    }
 `;
 class AddButton extends React.Component {
     state={

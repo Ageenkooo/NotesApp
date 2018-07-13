@@ -1,9 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import LogIn from './login';
-import Registration from './registration';
-import Main from './main';
-import App from './app';
+import LogIn from './js/components/login';
+import Registration from './js/components/registration';
+import Main from './js/components/main';
 import Books from './js/index';
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import registerServiceWorker from './registerServiceWorker';
@@ -24,7 +23,6 @@ ReactDOM.render(
     
         <BrowserRouter>
         <Div >
-        
             <Switch>
                 <Route exact path="/main" component={Main} />
                 <Route exact path="/" component={Books} />

@@ -11,8 +11,8 @@ import Lable from './lable/lable';
 import Form from './form/form';
 import Item from './item/item';
 import User from './user/user';
-import Cancel from './cancel-button/cancel-button';
-import AddButton from './add-button/add-button';
+import Cancel from './cancelButton/cancelButton';
+import AddButton from './addButton/addButton';
 
 storiesOf('Welcome', module).add('to Storybook', () => <Welcome showApp={linkTo('Button')} />);
 
