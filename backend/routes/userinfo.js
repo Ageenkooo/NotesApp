@@ -7,7 +7,6 @@ var url = "mongodb://localhost:27017/session";
 
 router.get('/', function (req, res, next) {
     var userData;
-
     mongoClient.connect(url, function (err, db) {
         const sessionDB = db.db('session')
         sessionDB.collection('sessions')
@@ -36,7 +35,6 @@ router.post('/addBook', (req) => {
     })
 
 router.post('/addNote', (req, res, next) => {
-    console.log(req.body)
     api
         .updateUserNote(req.body)
         .then(() => {
@@ -59,7 +57,6 @@ router.post('/addLable', (req, res, next) => {
     })
 
 router.post('/deleteLable', (req, res, next) => {
-    console.log(req.body)
     api
         .delUserNoteLable(req.body)
         .then((res) => {
@@ -71,7 +68,6 @@ router.post('/deleteLable', (req, res, next) => {
     })
 
 router.post('/deleteBook', (req) => {
-    console.log(req.body)
     api
         .delUserBook(req.body)
         .then(() => {
@@ -83,7 +79,6 @@ router.post('/deleteBook', (req) => {
     })
 
 router.post('/delNote', (req) => {
-    console.log(req.body)
     api
         .delUserNote(req.body)
         .then(() => {
@@ -95,7 +90,6 @@ router.post('/delNote', (req) => {
     })
 
 router.post('/changeNote', (req, res, next) => {
-    console.log(req.body)
     api
         .changeUserNote(req.body)
         .then((res) => {

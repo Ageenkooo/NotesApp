@@ -61,8 +61,6 @@ exports.updateUserNote = (userData) => {
     })
 }
 
-
-
 exports.changeUserNote = (userData) => {
     return User.update({
         _id: userData.id,
