@@ -79,7 +79,6 @@ exports.changeUserNote = (userData) => {
     })
 }
 exports.delUserBook = (userData) => {
-	console.log(userData)
     return User.update({
         _id: userData.id
     }, {
@@ -94,7 +93,6 @@ exports.delUserBook = (userData) => {
     })
 }
 exports.delUserNote = (userData) => {
-    console.log(userData)
     return User.update({
         _id: userData.id,
     }, {
@@ -114,7 +112,6 @@ exports.updateUserLable = (userData) => {
     let min = 0;
 	let max = 999999;
     let randomNum = Math.floor(Math.random() * (max - min + 1)) + min;
-    console.log(userData)
     return User.update({
         _id: userData.id,
         "notes": {
