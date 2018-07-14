@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import cn from 'classnames';
 
-const LableS = styled.span`
+const LableS = styled.span `
     color : white;
     background-color: #8bc63e;
     border-radius: 8px;
@@ -16,16 +16,17 @@ const LableS = styled.span`
     cursor: pointer;
 `;
 
-const NoteLable = ({children, className, onClick})=>(
-	<LableS  className={cn( className)}
-					onClick = {onClick}>
-					# {children}
-	</LableS>
-);
+class NoteLable extends React.Component {
+    render() {
+        return <LableS className={cn(this.props.className)} onClick={this.props.onClick}>
+            # {this.props.children}
+        </LableS>
+    }
+}
 
 NoteLable.propTypes = {
-	children : PropTypes.string.isRequired,
-	onClick : PropTypes.func,
+    children: PropTypes.string.isRequired,
+    onClick: PropTypes.func
 };
 
 export default NoteLable;

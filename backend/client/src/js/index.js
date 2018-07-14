@@ -7,12 +7,10 @@ import Page from './components/Page';
 const store = createStore(allReducers);
 
 class Books extends Component {
-  render() {
-    return (
-      <Provider store = {store} >
-        <Page />
-      </Provider>
-      );
-  }
+    render() {
+        return (<Provider store={store}>
+            <Page/>
+        </Provider>);
+    }
 }
 export default Books;

@@ -1,7 +1,6 @@
-
 import styled from 'styled-components';
 
-const Div = styled.div`
+const Div = styled.div `
 	::-webkit-scrollbar-button {
 		background-image:url('');
 		background-repeat:no-repeat;

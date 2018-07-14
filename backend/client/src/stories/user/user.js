@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import cn from 'classnames';
 import user from '../../img/user.svg';
 
-const LableS = styled.p`
+const LableS = styled.p `
   	color : #430F58;
 	font-size : 1em;
 	font-family: Geneva, Arial, Helvetica, sans-serif;
@@ -12,9 +12,9 @@ const LableS = styled.p`
 	padding-bottom: 0 !important;
 	margin-bottom: 0 !important;
 	
-`; 
+`;
 
-const ImgS = styled.img`
+const ImgS = styled.img `
 	width : 30px;
 	height : 30px;
 	margin : 10px;
@@ -22,7 +22,7 @@ const ImgS = styled.img`
 	background-size : 100% 100%;
 `;
 
-const Div = styled.div`
+const Div = styled.div `
 	width : 220px;
 	overflow : hidden;
 	display : flex;
@@ -36,18 +36,20 @@ const Div = styled.div`
 	}
 `;
 
-const User = ({children, className, onClick})=>(
-	<Div className={cn( className)}>
-		<LableS  className={cn( className)} onClick = {onClick}>
-			{children}
-		</LableS>
-    <ImgS src={user}/>
-	</Div>
-);
+class User extends React.Component {
+    render() {
+        return <Div className={cn(this.props.className)}>
+            <LableS className={cn(this.props.className)} onClick={this.props.onClick}>
+                {this.props.children}
+            </LableS>
+            <ImgS src={user}/>
+        </Div>
+    }
+}
 
 User.propTypes = {
-	children : PropTypes.string.isRequired,
-	onClick : PropTypes.func,
+    children: PropTypes.string.isRequired,
+    onClick: PropTypes.func
 };
 
 export default User;

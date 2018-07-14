@@ -29,13 +29,13 @@ class AddButton extends React.Component {
     render() {
         if(!this.state.input){
     	return <ButtonS className={cn( this.props.className)}
-                onClick = {()=>{if(!this.state.input)this.setState({input:true})}}>
+                	onClick={()=>{if(!this.state.input)this.setState({input:true})}}>
 					{this.props.children}
                 </ButtonS>;
         }
         else
             return <Input className={cn( this.props.className)}
-                          onMouseLeave ={()=>{if(this.state.input)this.setState({input:false})}} 
+                          onMouseLeave={()=>{if(this.state.input)this.setState({input:false})}} 
                           name={this.props.name} 
                           type={this.props.type}  
                           onChange = {this.props.onChange} 

@@ -1,23 +1,23 @@
-import { Modal } from 'semantic-ui-react';
+import {Modal} from 'semantic-ui-react';
 import React from 'react';
 
 const inlineStyle = {
-    modal : {
-      marginTop: '0px !important',
-      marginLeft: 'auto',
-      marginRight: 'auto',
+    modal: {
+        marginTop: '0px !important',
+        marginLeft: 'auto',
+        marginRight: 'auto'
     }
 };
 
-const ModalWindow = ({trigger, header, content, actions})=>(
-	<Modal
-            style={inlineStyle.modal}
-            trigger={trigger}
-            content = {content}
-            header= {header}
-            actions = {actions}
-    		/>        									
-);
-
+class ModalWindow extends React.Component {
+    render() {
+    return <Modal
+        style={inlineStyle.modal}
+        trigger={this.props.trigger}
+        content={this.props.content}
+        header={this.props.header}
+        actions={this.props.actions}/>
+    }
+}
 
 export default ModalWindow;

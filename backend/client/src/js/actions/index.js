@@ -1,4 +1,4 @@
-import * as types from '../constants/ActionTypes'
+import * as types from '../constants/ActionTypes';
 
 export const select = (book) => ({ type: types.BOOK_SELECTED, payload:book })
 export const addBook = (book) => ({ type: types.ADD_BOOK, book })

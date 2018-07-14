@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import cn from 'classnames';
 
-const ButtonS= styled.button`
+const ButtonS = styled.button `
 	color: white ;
 	background: #6C567B !important;
 	text-decoration: none;
@@ -25,20 +25,20 @@ const ButtonS= styled.button`
   		border:1px solid #C06C84;
  	}
 `;
-
 class Button extends React.Component {
     render() {
-    	return <ButtonS className={cn( this.props.className)}
-						  onClick = {this.props.onClick} 
-						  disabled={this.props.disabled} 
-						  type ={this.props.type}>
-					{this.props.children}
-            	</ButtonS>;
-  	}
+        return <ButtonS
+            			className={cn(this.props.className)}
+            			onClick={this.props.onClick}
+            			disabled={this.props.disabled}
+            			type={this.props.type}>
+            		{this.props.children}
+        		</ButtonS>;
+    }
 }
 
 Button.propTypes = {
-	onClick : PropTypes.func,
+    onClick: PropTypes.func
 };
 
 export default Button;

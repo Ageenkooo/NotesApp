@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import cn from 'classnames';
 
-const InputS = styled.input`
+const InputS = styled.input `
 	background-color: transparent;
 	width : 150px;
   color: #6C567B !important;
@@ -33,7 +33,19 @@ const InputS = styled.input`
 	}
 `;
 
-const Input = ({className, onChange, type, placeholder, value, name,onKeyDown, onBlur, onMouseLeave})=>(
-	<InputS className={cn( className)} name={name} type={type} onMouseLeave={onMouseLeave} onChange = {onChange} onBlur={onBlur} placeholder={placeholder} value={value} onKeyDown={onKeyDown}/>
-);
+class Input extends React.Component {
+    render() {
+            return <InputS
+                    className={cn(this.props.className)}
+                    name={this.props.name}
+                    type={this.props.type}
+                    onMouseLeave={this.props.onMouseLeave}
+                    onChange={this.props.onChange}
+                    onBlur={this.props.onBlur}
+                    placeholder={this.props.placeholder}
+                    value={this.props.value}
+                    onKeyDown={this.props.onKeyDown}/>
+	}
+}
+
 export default Input;

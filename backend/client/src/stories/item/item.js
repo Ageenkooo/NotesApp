@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import book from '../../img/book.png';
 import notepad from '../../img/notepad.svg';
 
-const LableS = styled.p`
+const LableS = styled.p `
   	color : #430F58;
 	margin: 2px;
 	font-size : 1em;
@@ -16,7 +16,7 @@ const LableS = styled.p`
 	}
 `;
 
-const ImgS = styled.div`
+const ImgS = styled.div `
 	width : 25px;
 	height : 25px;
 	background-repeat : no-repeat;
@@ -28,7 +28,7 @@ const ImgS = styled.div`
 	}
 `;
 
-const Div = styled.div`
+const Div = styled.div `
 	width : 200px;
 	display : flex;
 	flex-direction : row;
@@ -41,15 +41,18 @@ const Div = styled.div`
 	cursor: pointer;
 `;
 
-class Item extends React.Component{
-	render(){
-		return <Div className={this.props.className} onClick = {this.props.onClick}>
-					<ImgS className={this.props.className}/>
-					<LableS  className={this.props.className} onDoubleClick={this.props.onDoubleClick}>
-						{this.props.name}
-					</LableS>
-					{this.props.children}
-				</Div>
-	}
+class Item extends React.Component {
+    render() {
+        return <Div className={this.props.className} onClick={this.props.onClick}>
+            		<ImgS className={this.props.className}/>
+            		<LableS
+                		className={this.props.className}
+                		onDoubleClick={this.props.onDoubleClick}>
+                		{this.props.name}
+            		</LableS>
+            		{this.props.children}
+        		</Div>
+    }
 }
+
 export default Item;

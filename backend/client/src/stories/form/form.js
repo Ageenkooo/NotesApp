@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import cn from 'classnames';
 
-const FormS = styled.form`
+const FormS = styled.form `
 	background-color: white;
 	opacity: 0.95;
 	border-radius : 5px;
@@ -21,19 +21,21 @@ const FormS = styled.form`
 		height: 30vh;
 	}
 `;
-const Form = ({children, className, onClick, onSubmit, method, action})=>(
-	<FormS  className={cn( className)}
-					onClick = {onClick}
-					onSubmit = {onSubmit}
-					method={method}
-					action={action}
-					>
-					{children}
-	</FormS>
-);
+class Form extends React.Component {
+    render() {
+    return <FormS
+        className={cn(this.props.className)}
+        onClick={this.props.onClick}
+        onSubmit={this.props.onSubmit}
+        method={this.props.method}
+        action={this.props.action}>
+        {this.props.children}
+    </FormS>
+	}
+}
 
 Form.propTypes = {
-	onClick : PropTypes.func,
+    onClick: PropTypes.func
 };
 
 export default Form;

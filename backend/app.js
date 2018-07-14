@@ -1,13 +1,9 @@
 var express = require('express');
 var path = require('path');
-var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var index = require('./routes/index');
-var users = require('./routes/users');
-var books = require('./routes/books');
-var notes = require('./routes/notes');
+var user = require('./routes/user');
 var userinfo = require('./routes/userinfo');
 var registration = require('./routes/registration');
 var mongoose = require("mongoose")
@@ -49,8 +45,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', index);
-app.use('/users', users);
+app.use('/user', user);
 app.use('/userinfo', userinfo);
 app.use('/registration', registration);
 

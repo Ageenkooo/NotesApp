@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import cn from 'classnames';
 
-const LableS = styled.p`
+const LableS = styled.p `
   	color : #6C567B;
 	font-size : 2.5vh;
 	font-family: Geneva, Arial, Helvetica, sans-serif;
@@ -18,16 +18,17 @@ const LableS = styled.p`
 	}
 `;
 
-const Lable = ({children, className, onClick})=>(
-	<LableS  className={cn( className)}
-					onClick = {onClick}>
-					{children}
-	</LableS>
-);
+class Lable extends React.Component {
+    render() {
+    return <LableS className={cn(this.props.className)} onClick={this.props.onClick}>
+        {this.props.children}
+    </LableS>
+	}
+}
 
 Lable.propTypes = {
-	children : PropTypes.string.isRequired,
-	onClick : PropTypes.func,
+    children: PropTypes.string.isRequired,
+    onClick: PropTypes.func
 };
 
 export default Lable;
